@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hospital_doctor_tree" model="ir.ui.view">
+        <field name="name">hospital.doctor.tree</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <tree string="Doctors">
+                <field name="name"/>
+                <field name="specialization_id"/>
+                <field name="department_id"/>
+                <field name="available_from"/>
+                <field name="available_to"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_hospital_doctor_form" model="ir.ui.view">
+        <field name="name">hospital.doctor.form</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <form string="Doctor Information">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="specialization_id" options="{'no_create': True}"/>
+                        <field name="department_id" options="{'no_create': True 'no_open': True}"/>
+                        <field name="designation"/>
+                        <field name="available_from"/>
+                        <field name="available_to"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" group="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_hospital_doctor" model="ir.actions.act_window">
+        <field name="name">Doctors</field>
+        <field name="res_model">hospital.doctor</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new doctor
+            </p>
+        </field>
+    </record>
+</odoo>

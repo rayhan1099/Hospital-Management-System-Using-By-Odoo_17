@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_hospital_root"
+              name="Hospital Management System"
+              web_icon="om_hospital,static/description/icon_2.png"
+              sequence="39"/>
+
+    <menuitem id="menu_frontdesk"
+              name="Front Desk"
+              parent="menu_hospital_root"/>
+
+    <menuitem id="menu_patients"
+              name="Patients"
+              parent="menu_frontdesk"
+              action="action_hospital_patient"/>
+
+    <menuitem id="menu_patients_readonly"
+              name="View Patients"
+              parent="menu_frontdesk"
+              action="action_hospital_readonly_patient"/>
+
+    <menuitem id="menu_appointments"
+              name="Appointments" parent="menu_frontdesk"
+              action="action_hospital_appointments"/>
+
+    <menuitem id="menu_appointments_line"
+              name="Appointments_line"
+              parent="menu_frontdesk"
+              action="action_hospital_appointments_line"/>
+
+    <menuitem id="menu_departments"
+              name="Departments" parent="menu_frontdesk"
+              action="action_hospital_department"/>
+
+    <menuitem id="menu_doctors"
+              name="Doctors"
+              parent="menu_frontdesk"
+              action="action_hospital_doctor"/>
+
+    <menuitem id="menu_configuration"
+              name="Configuration"
+              sequence="101"
+              parent="menu_hospital_root"/>
+    <menuitem id="menu_patient_tag"
+              name="Tag"
+              parent="menu_configuration"
+              action="action_patient_tag"/>
+</odoo>

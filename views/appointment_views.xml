@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hospital_appointments_tree" model="ir.ui.view">
+        <field name="name">hospital.appointments.tree</field>
+        <field name="model">hospital.appointments</field>
+        <field name="arch" type="xml">
+            <tree string="Appointments">
+                <field name="reference"/>
+                <field name="patient_id"/>
+                <field name="doctor_id"/>
+                <field name="date_appointments"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_hospital_appointments_form" model="ir.ui.view">
+        <field name="name">hospital.appointments.form</field>
+        <field name="model">hospital.appointments</field>
+        <field name="arch" type="xml">
+            <form string="Appointments">
+                <sheet>
+                    <header>
+                        <button name="action_confirm" type="object" string="Confirm" invisible="state!='draft'"
+                                class="oe_highlight"/>
+                        <button name="action_ongoing" type="object" string="Ongoing" invisible="state!='confirmed'"
+                                class="oe_highlight"/>
+                        <button name="action_done" type="object" string="Done" invisible="state!='ongoing'"
+                                class="oe_highlight"/>
+                        <button name="action_cancel" type="object" string="Cancel" invisible="state=='done'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,ongoing,done"/>
+                    </header>
+                    <group>
+                        <group>
+                            <field name="patient_id" options="{'no_create': True}"/>
+                            <field name="date_of_birth" />
+                            <field name="reference" readonly="true"/>
+                            <field name="date_appointments" optional="show"/>
+                        </group>
+                        <group>
+                            <field name="doctor_id" options="{'no_create': True}"/>
+                            <field name="total_qty"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="appointment_lines" string="Lines">
+                            <field name="appointment_lines_ids">
+                                <tree editable="bottom">
+                                    <field name="product_id" options="{'no_create': True}"/>
+                                    <field name="qty"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="other_info" string="Other Info">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" group="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hospital_appointments" model="ir.actions.act_window">
+        <field name="name">Appointments</field>
+        <field name="res_model">hospital.appointments</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocentent_smiling_face">
+                Create a new appointment
+            </p>
+        </field>
+    </record>
+</odoo>
