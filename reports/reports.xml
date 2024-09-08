@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <!-- Report Action -->
+    <record id="action_report_patient_card" model="ir.actions.report">
+        <field name="name">Patient Card</field>
+        <field name="model">hospital.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hospital.report_patient_card</field>
+        <field name="report_file">hospital.report_patient_card</field>
+        <field name="binding_model_id" ref="hospital.model_hospital_patient"/> <!-- Verify this reference -->
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Patient Card - ' + object.name</field>
+    </record>
+
+    <template id="custom_layout">
+        <div class="page">
+            <main>
+                <t t-raw="0"/>
+            </main>
+        </div>
+    </template>
+
+    <template id="report_patient_card">
+        <t t-call="hospital.custom_layout"> <!-- Ensure this layout exists -->
+            <div class="page">
+                <!-- Decorative Header Line -->
+                <div style="border-bottom: 2px solid #000; margin-bottom: 20px;"></div>
+
+                <!-- Report Title -->
+                <h2 class="text-center" style="margin-top: 10px; text-decoration: underline; color: #4A90E2;">
+                    Patient Information
+                </h2>
+
+                <!-- Decorative Line Below Title -->
+                <div style="border-bottom: 1px solid #000; margin-bottom: 30px;"></div>
+
+                <!-- Stock Move Lines Table -->
+                <table class="table table-condensed mt-4" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background-color: #F2F2F2; border-bottom: 2px solid #000;">
+                            <th style="padding: 8px; border: 1px solid #000; text-align: center;">Serial</th>
+                            <th style="padding: 8px; border: 1px solid #000; text-align: center;">Name</th>
+                            <th style="padding: 8px; border: 1px solid #000; text-align: center;">Date of Birth</th>
+                            <th style="padding: 8px; border: 1px solid #000; text-align: center;">Gender</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="serial" t-value="0"/> <!-- Initialize Serial Number -->
+                        <t t-foreach="docs" t-as="line">
+                            <t t-set="serial" t-value="serial + 1"/> <!-- Increment Serial Number -->
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #000; text-align: center;">
+                                    <t t-esc="serial"/> <!-- Display Serial Number -->
+                                </td>
+                                <td style="padding: 8px; border: 1px solid #000; text-align: center;">
+                                    <t t-esc="line.name"/>
+                                </td>
+                                <td style="padding: 8px; border: 1px solid #000; text-align: center;">
+                                    <t t-esc="line.date_of_birth"/>
+                                </td>
+                                <td style="padding: 8px; border: 1px solid #000; text-align: center;">
+                                    <t t-esc="line.gender"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+                <!-- Decorative Footer Line -->
+                <div style="border-top: 2px solid #000; margin-top: 30px;"></div>
+
+                <!-- Footer with additional details -->
+                <div class="text-center mt-4">
+                    <p>This report was generated on <t t-esc="time.strftime('%Y-%m-%d %H:%M:%S')"/>.</p>
+                    <p>Thank you for your treatment!</p>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

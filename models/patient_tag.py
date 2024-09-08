@@ -1,6 +1,5 @@
 from odoo import api, fields, models
 
-
 class HospitalPatientTag(models.Model):
     _name = 'patient.tag'
     _description = 'Patient Tag'

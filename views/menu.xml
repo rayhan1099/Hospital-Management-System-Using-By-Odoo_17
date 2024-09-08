@@ -14,11 +14,6 @@
               parent="menu_frontdesk"
               action="action_hospital_patient"/>
 
-    <menuitem id="menu_patients_readonly"
-              name="View Patients"
-              parent="menu_frontdesk"
-              action="action_hospital_readonly_patient"/>
-
     <menuitem id="menu_appointments"
               name="Appointments" parent="menu_frontdesk"
               action="action_hospital_appointments"/>
@@ -27,6 +22,8 @@
               name="Appointments_line"
               parent="menu_frontdesk"
               action="action_hospital_appointments_line"/>
+
+
 
     <menuitem id="menu_departments"
               name="Departments" parent="menu_frontdesk"
@@ -41,8 +38,19 @@
               name="Configuration"
               sequence="101"
               parent="menu_hospital_root"/>
+
+      <menuitem id="menu_hospital_specialization"
+              name="Specializations"
+              parent="menu_configuration"
+              action="action_hospital_specialization"/>
+
     <menuitem id="menu_patient_tag"
               name="Tag"
               parent="menu_configuration"
               action="action_patient_tag"/>
+
+        <menuitem id="menu_create_appointment"
+              name="Create Appointment"
+              parent="menu_frontdesk"
+              action="action_create_appointment"/>
 </odoo>

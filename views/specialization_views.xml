@@ -40,9 +40,4 @@
             </p>
         </field>
     </record>
-
-    <menuitem id="menu_hospital_specialization"
-              name="Specializations"
-              parent="menu_configuration"
-              action="action_hospital_specialization"/>
 </odoo>
