@@ -14,6 +14,7 @@
         "views/patient_tag.xml",
         "views/appointment_views.xml",
         "views/appointment_lines_views.xml",
+        "views/template.xml",
         "views/doctor_views.xml",
         "views/department_views.xml",
         "views/specialization_views.xml",

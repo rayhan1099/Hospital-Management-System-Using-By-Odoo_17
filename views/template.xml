@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="patient_page" name="Hospital Patient">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1>Hospital Patients List</h1>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Patient Name</th>
+                            <th>Date of Birth</th>
+                            <th>Gender</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="patients" t-as="patient">
+                            <tr>
+                                <td><t t-esc="patient.id"/></td>
+                                <td><t t-esc="patient.name"/></td>
+                                <td><t t-esc="patient.date_of_birth"/></td> <!-- Use date_of_birth here -->
+                                <td><t t-esc="patient.gender"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>
